@@ -7,8 +7,6 @@ import { CouponTypeModel } from "./coupon-type";
 env.config();
 const app = express();
 
-const total_price = 50000;
-
 app.use(express.json());
 
 app.post("/addCoupon", async (req, res) => {
@@ -54,17 +52,29 @@ app.post("/checkCoupon", async (req, res) => {
 
     const coupon = req.body;
 
-    const data = await CouponModel.findOne({cp_code: coupon.cp_code,}).populate({ path: "cpt_id", select: "cpt_discount" });
-    
+    const data = await CouponModel.findOne({cp_code: coupon.cp_code,}).populate({ path: "cpt_id", select: "cpt_discount cpt_delivery" });
+
     if (!data) {
 
       return res.status(404).send("Not Found");
     }
     const discount = data.cpt_id.cpt_discount[0].dis_price
 
-    const result = total_price - discount
+    const fee = data.cpt_id.cpt_delivery
 
-    return res.status(200).send(`Total_price = ${total_price}\n Discount = ${discount}\n Total_pay = ${result}`)
+    if (discount){
+
+      const result = (coupon.product_price + coupon.fee) - discount
+
+      return res.status(200).send(`Product_price = ${coupon.product_price}\n Fee = ${coupon.fee}\n Discount = ${discount}\n Total_price = ${result}`)
+    }
+
+    if (fee){
+
+      const result = (coupon.product_price + fee)
+
+      return res.status(200).send(`Product_price = ${coupon.product_price}\n Fee = ${fee}\n Total_price = ${result}`)
+    }
 
   } catch (er) {
 
