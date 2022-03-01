@@ -54,17 +54,17 @@ const CouponTypeSchema = new mongoose.Schema(
       ship: { type: Boolean, default: false },
     },
     cpt_date: { type: Date, default: Date.now },
-    restuarants: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "restuarant",
-        default: null,
-      },
-    ],
-    shop: [{ type: mongoose.Schema.Types, ref: "gtds_shop", default: null }],
-    customers: [
-      { type: mongoose.Schema.Types, ref: "Customer", default: null },
-    ],
+    // restuarants: [
+    //   {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "rest uarant",
+    //     default: null,
+    //   },
+    // ],
+    // shop: [{ type: mongoose.Schema.Types, ref: "gtds_shop", default: null }],
+    // customers: [
+    //   { type: mongoose.Schema.Types, ref: "Customer", default: null },
+    // ],
     max_discount: { type: Number, default: null },
   },
   {

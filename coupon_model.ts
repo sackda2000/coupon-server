@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { CouponTypeDoc } from "./coupon-type";
 export interface CouponDoc extends mongoose.Document {
   cp_code: string;
-  cpt_id: string | CouponTypeDoc;
+  cpt_id: CouponTypeDoc;
   cp_startDate: string;
   cp_endDate: string;
   cp_max: number;
@@ -38,7 +38,7 @@ const CouponSchema = new mongoose.Schema(
   }
 );
 
-export const CouponTypeModel = mongoose.model<CouponDoc, Coupon>(
-  "coupon_type",
+export const CouponModel = mongoose.model<CouponDoc, Coupon>(
+  "coupon",
   CouponSchema
 );
