@@ -1,10 +1,9 @@
 import express from "express";
 import mongoose from "mongoose";
 import { CouponModel } from "./coupon_model";
-import env from "dotenv";
 import { CouponTypeModel } from "./coupon-type";
 
-env.config();
+
 const app = express();
 
 app.use(express.json());
