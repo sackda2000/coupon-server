@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { CouponTypeDoc } from "./coupon-type";
+import { CouponTypeDoc } from "../coupon/coupon-type";
 export interface CouponDoc extends mongoose.Document {
   cp_code: string;
   cpt_id: CouponTypeDoc;
