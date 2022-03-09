@@ -1,4 +1,4 @@
-export const calculate_coupon = (totalPrice: any, dis_price: any) => {
+export const calculate_discount = (totalPrice: any, dis_price: any) => {
 
   try {
 
